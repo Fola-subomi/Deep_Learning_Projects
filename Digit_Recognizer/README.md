@@ -1,11 +1,11 @@
-#✨ Handwritten Digit Recognizer (MNIST)
+✨ Handwritten Digit Recognizer (MNIST)
 
 This is a deep learning project where I built a Convolutional Neural Network (CNN) to recognize handwritten digits (0–9).
 The model learns from thousands of small 28×28 grayscale images and predicts which digit appears in each one.
 
 This project helped me understand image preprocessing, neural networks, convolutions, and model evaluation.
 
-##📝 What This Project Does
+📝 What This Project Does
 
 Loads the MNIST handwritten digit dataset
 
@@ -37,3 +37,4 @@ Why softmax is used in multi-class classification
 How flattening converts image features into predictions
 
 How accuracy changes with epochs and batch size
+
