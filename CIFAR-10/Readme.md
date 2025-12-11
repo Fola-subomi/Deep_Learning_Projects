@@ -101,3 +101,59 @@ EfficientNetB0(
 
 EfficientNet extracts high-level features from the images, while your custom head learns CIFAR-10-specific patterns.
 
+---
+
+## 📈 Training
+
+The model is trained with:
+
+* **optimizer:** Adam
+* **loss:** Sparse Categorical Crossentropy
+* **epochs:** 20–40 (often enough with pretrained models)
+* **callbacks:**
+
+  * EarlyStopping
+  * ReduceLROnPlateau
+  * ModelCheckpoint
+
+### Training Strategy
+
+#### **Phase 1: Frozen Base**
+
+* The EfficientNet layers are frozen
+* Only the custom classification layers are trained
+* This stabilizes learning and prevents large weight changes
+
+#### **Phase 2: Fine-Tuning**
+
+* Unfreeze a few top EfficientNet layers
+* Train with a very low learning rate
+* Boosts accuracy significantly on CIFAR-10
+
+---
+
+## 📊 Evaluation
+
+During and after training, you evaluate:
+
+* Training vs validation accuracy
+* Training vs validation loss
+* Final test accuracy
+* Confusion matrix
+* Visualization of predictions
+
+EfficientNet typically achieves **90%+ accuracy** with proper fine-tuning.
+
+---
+
+## 📜 Summary
+
+Using **EfficientNet with transfer learning** provides:
+
+* Higher accuracy than training a CNN from scratch
+* Faster convergence
+* Less need for a massive architecture
+* Better generalization even with small images
+* More stability thanks to pretrained ImageNet weights
+
+This makes it ideal for CIFAR-10 experiments and showcases the power of transfer learning in modern image classification.
