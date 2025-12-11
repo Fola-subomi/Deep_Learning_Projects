@@ -1,7 +1,7 @@
-# 📦 CIFAR-10 Image Classification (CNN)
+# 📦 CIFAR-10 Image Classification Using Pretrained EfficientNet
 
-This project uses a Convolutional Neural Network (CNN) to classify images from the **CIFAR-10 dataset** into 10 categories such as airplanes, cars, birds, cats, dogs, and more.
-The goal is to build and train a deep learning model that correctly identifies real-world objects in small 32×32 color images.
+This project applies **EfficientNet**, a cutting-edge convolutional neural network pretrained on ImageNet, to classify images from the **CIFAR-10 dataset**.
+Instead of building a CNN from scratch, this approach uses **transfer learning** to achieve significantly better accuracy with fewer training steps.
 
 ---
 
@@ -9,23 +9,43 @@ The goal is to build and train a deep learning model that correctly identifies r
 
 The CIFAR-10 dataset contains:
 
-* **60,000 images**
+* **60,000 color images**
 * **32×32 resolution**
-* **3 color channels (RGB)**
-* **10 distinct classes**
+* **10 classes** representing common object categories
+  *(airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck)*
 
-This project implements a **deep CNN with Batch Normalization, Dropout, and Data Augmentation** to achieve strong generalization and stable training.
+EfficientNet provides a powerful feature extractor, so the model can learn high-level patterns even though CIFAR-10 images are small.
 
 ---
 
 ## 🧠 Features
 
-* Preprocessing of CIFAR-10 data
-* Deep CNN architecture
-* Batch Normalization for stable training
-* Data Augmentation to improve robustness
-* Evaluation with accuracy & loss curves
-* Prediction on test images
+### 🔹 Transfer Learning with EfficientNet
+
+* Uses **EfficientNetB0/B1/B2** pretrained on ImageNet
+* Base model has *frozen* layers initially
+* A new classification head is added on top
+* Later, some layers may be unfrozen for fine-tuning
+
+### 🔹 Data Preprocessing
+
+* Images are **resized** to EfficientNet input size (224×224 or similar)
+* Pixel values normalized to [0, 1]
+* Labels converted to integer class IDs
+
+### 🔹 Data Augmentation
+
+* Random flipping
+* Random rotation
+* Random zooming
+* Random shifting
+
+This improves robustness and reduces overfitting.
+
+### 🔹 Evaluation Tools
+
+* Accuracy and loss curves
+* Predictions on test samples
 
 ---
 
@@ -40,11 +60,13 @@ This project implements a **deep CNN with Batch Normalization, Dropout, and Data
 
 ## 📂 Dataset
 
-CIFAR-10 is automatically downloaded using:
+The CIFAR-10 dataset is loaded using:
 
 ```python
 from tensorflow.keras.datasets import cifar10
 ```
+
+It automatically downloads the data with images and labels ready to use.
 
 Classes include:
 
@@ -56,30 +78,26 @@ airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck
 
 ## 🏗️ Model Architecture (Summary)
 
-* Conv2D + BatchNorm
-* Conv2D + BatchNorm
-* MaxPooling + Dropout
-* Conv2D + BatchNorm
-* Conv2D + BatchNorm
-* MaxPooling + Dropout
-* Conv2D + BatchNorm
-* Conv2D + BatchNorm
-* MaxPooling + Dropout
-* Dense(256) + Dropout
-* Dense(10, softmax)
+Your architecture structure becomes:
 
-This architecture helps balance depth, stability, and generalization.
+### **1️⃣ Pretrained EfficientNet Backbone**
 
----
+```python
+EfficientNetB0(
+    include_top=False,
+    weights="imagenet",
+    input_shape=(224,224,3)
+)
+```
 
-## 📈 Training
+### **2️⃣ Custom Classification Head**
 
-The model is trained using:
+* GlobalAveragePooling2D
+* Dense(256, activation="relu")
+* Dropout(0.4)
+* Dense(10, activation="softmax")
 
-* **optimizer:** Adam
-* **loss:** Sparse Categorical Crossentropy
-* **epochs:** 30–50
-* **data augmentation:** rotation, shifting, flipping
-* **callbacks:** EarlyStopping + ReduceLROnPlateau
+### Why this works
 
+EfficientNet extracts high-level features from the images, while your custom head learns CIFAR-10-specific patterns.
 
