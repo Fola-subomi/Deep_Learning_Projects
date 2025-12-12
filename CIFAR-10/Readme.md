@@ -109,7 +109,7 @@ The model is trained with:
 
 * **optimizer:** Adam
 * **loss:** Sparse Categorical Crossentropy
-* **epochs:** 20–40 (often enough with pretrained models)
+* **epochs:** 20–40 cumulative (often enough with pretrained models)
 * **callbacks:**
 
   * EarlyStopping
