@@ -142,8 +142,6 @@ During and after training, you evaluate:
 * Confusion matrix
 * Visualization of predictions
 
-EfficientNet typically achieves **90%+ accuracy** with proper fine-tuning.
-
 ---
 
 ## 📜 Summary
