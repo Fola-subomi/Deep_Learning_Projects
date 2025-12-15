@@ -125,4 +125,3 @@ Using **EfficientNet with transfer learning** provides:
 * Better generalization even with small images
 * More stability thanks to pretrained ImageNet weights
 
-This makes it ideal for CIFAR-10 experiments and showcases the power of transfer learning in modern image classification.
