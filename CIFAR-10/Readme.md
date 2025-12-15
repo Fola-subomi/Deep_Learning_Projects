@@ -74,35 +74,6 @@ Classes include:
 airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck
 ```
 
----
-
-## 🏗️ Model Architecture (Summary)
-
-Your architecture structure becomes:
-
-### **1️⃣ Pretrained EfficientNet Backbone**
-
-```python
-EfficientNetB0(
-    include_top=False,
-    weights="imagenet",
-    input_shape=(224,224,3)
-)
-```
-
-### **2️⃣ Custom Classification Head**
-
-* GlobalAveragePooling2D
-* Dense(256, activation="relu")
-* Dropout(0.4)
-* Dense(10, activation="softmax")
-
-### Why this works
-
-EfficientNet extracts high-level features from the images, while your custom head learns CIFAR-10-specific patterns.
-
----
-
 ## 📈 Training
 
 The model is trained with:
