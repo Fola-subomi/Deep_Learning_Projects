@@ -112,15 +112,3 @@ During and after training, you evaluate:
 * Final test accuracy
 * Visualization of predictions
 
----
-
-## 📜 Summary
-
-Using **EfficientNet with transfer learning** provides:
-
-* Higher accuracy than training a CNN from scratch
-* Faster convergence
-* Less need for a massive architecture
-* Better generalization even with small images
-* More stability thanks to pretrained ImageNet weights
-
