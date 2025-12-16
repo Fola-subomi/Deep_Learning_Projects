@@ -110,7 +110,6 @@ During and after training, you evaluate:
 * Training vs validation accuracy
 * Training vs validation loss
 * Final test accuracy
-* Confusion matrix
 * Visualization of predictions
 
 ---
