@@ -107,8 +107,8 @@ The model is trained with:
 
 During and after training, you evaluate:
 
-* Training vs validation accuracy
-* Training vs validation loss
+* validation accuracy
+* validation loss
 * Final test accuracy
 * Visualization of predictions
 
